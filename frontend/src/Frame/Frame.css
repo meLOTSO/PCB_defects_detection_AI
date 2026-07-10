@@ -1,0 +1,29 @@
+@import url("../params.css");
+
+.frame {
+   position: fixed;
+   left: 0;
+   top: 0;
+   background-color: rgba(0, 0, 0, 0.6);
+   backdrop-filter: blur(8px);
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   z-index: 100;
+}
+
+.frame-inner {
+   max-width: var(--max-width);
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+}
+
+.frame-content {
+   background-color: var(--white);
+   padding: 20px;
+   height: fit-content;
+}

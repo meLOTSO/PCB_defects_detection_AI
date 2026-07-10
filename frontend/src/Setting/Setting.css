@@ -1,0 +1,60 @@
+@import url("../params.css");
+
+.setting {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   grid-template-rows: repeat(2, 1fr);
+   grid-template-areas: 
+      "slct_img trc_dfcts c_t yolo"
+      "slct_cad pcb_dftcs c_t send";
+   row-gap: 20px;
+   column-gap: 60px;
+}
+
+.btn-select_images > input, 
+.btn-select_cad_file > input,
+.submit-btn > input {
+   display: none;
+}
+
+.btn-select_images {
+   grid-area: slct_img;
+}
+.btn-select_cad_file {
+   grid-area: slct_cad;
+}
+.trace_defects-selects {
+   grid-area: trc_dfcts;
+}
+.pcb_defects-select {
+   grid-area: pcb_dftcs;
+}
+.confidence_threshold {
+   grid-area: c_t;
+   background-color: var(--dark);
+   border-radius: 40px;
+   font-size: 16px;
+}
+.confidence_threshold:hover {
+   cursor: default;
+}
+
+.yolo {
+   background-color: var(--dark-green);
+   color: var(--green);
+   font-size: 22px;
+   width: 100%;
+   height: 100%;
+   border-radius: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.submit-btn.loading,
+.submit-btn:disabled {
+   background-color: var(--dark-green);
+   color: var(--green);
+   cursor: default;
+}
+

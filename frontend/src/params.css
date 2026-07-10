@@ -1,0 +1,9 @@
+* {
+   --dark: #01070A;
+   --dark-green: #46656F;
+   --green: #8FABB7;
+   --gray: #D8DFE5;
+   --white: #FBFBFB;
+   
+   --max-width: 1200px;
+}

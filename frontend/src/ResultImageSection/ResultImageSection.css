@@ -1,0 +1,34 @@
+.result-image {
+   width: 100%;
+}
+
+.result-image img {
+   width: 100%;
+   height: auto;
+   border-radius: 40px;
+   display: block;
+}
+
+.result-image-inner {
+   position: relative;
+   width: 100%;
+   display: inline-block;
+}
+
+
+
+/* .defect_label {
+   display: none;
+} */
+
+.defect_label {
+   position: fixed;
+   display: block;
+   padding: 10px;
+   margin: 6px;
+   background-color: var(--dark);
+   border-radius: 16px;
+   color: var(--gray);
+   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.8);
+   z-index: 100;
+}

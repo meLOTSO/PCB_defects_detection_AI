@@ -1,0 +1,37 @@
+@import url("../params.css");
+
+@keyframes defectPulse {
+   0%, 100% {
+      opacity: 0.6;
+   }
+   50% {
+      opacity: 0.4;
+   }
+}
+
+.defect_place {
+   position: absolute;
+   z-index: 100;
+   animation: defectPulse 0.8s ease-in-out infinite;
+   pointer-events: auto;
+}
+
+.defect_place:hover {
+   animation: none;
+   cursor: crosshair;
+}
+
+/* .defect_place span {
+   position: fixed;
+   display: none;
+}
+
+.defect_place:hover span {
+   display: block;
+   padding: 10px;
+   margin: 6px;
+   background-color: var(--dark);
+   border-radius: 16px;
+   color: var(--gray);
+   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.8);
+} */

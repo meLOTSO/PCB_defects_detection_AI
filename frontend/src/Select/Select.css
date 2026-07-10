@@ -1,0 +1,12 @@
+@import url("../params.css");
+
+.unvisible {
+   display: none;
+}
+
+.trace_defects-frame {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   border-radius: 30px;
+}

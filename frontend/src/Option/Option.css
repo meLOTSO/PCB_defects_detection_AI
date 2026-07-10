@@ -1,0 +1,12 @@
+@import url("../params.css");
+
+.option-btn {
+   width: auto;
+   padding-left: 20px;
+   padding-right: 20px;
+}
+
+.noselected {
+   background-color: var(--gray);
+   color: var(--dark);
+}

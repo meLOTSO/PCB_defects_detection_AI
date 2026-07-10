@@ -1,0 +1,82 @@
+@import url("../params.css");
+
+.slider input:hover {
+   -webkit-appearance: none;
+   appearance: none;
+   cursor: pointer;
+}
+
+.slider input::-webkit-slider-runnable-track {
+   background: var(--white);
+   border-radius: 5px;
+   height: 6px;
+   width: 100%;
+}
+.slider input::-webkit-slider-thumb {
+   background: var(--white);
+   border-radius: 5px;
+   height: 6px;
+   width: 100%;
+}
+.slider input::-moz-range-track {
+   background: var(--white);
+   border-radius: 5px;
+   height: 6px;
+   width: 100%;
+}
+.slider input::-moz-range-thumb {  
+   background: var(--white);
+   border-radius: 5px;
+   height: 6px;
+   width: 100%;
+}
+.slider input::-ms-track {
+   background: var(--white);  
+   border-radius: 5px;
+   height: 6px;
+   width: 100%;
+}
+.slider input::-ms-thumb {
+   background: var(--white);
+   border-radius: 5px;
+   height: 6px;
+   width: 100%;
+}
+.slider input::-ms-fill-lower {
+   background: var(--white);
+}
+.slider input::-webkit-slider-thumb {
+   width: 6px;
+   height: 12px;
+   background: var(--dark-green);
+}
+.slider input::-moz-range-thumb {
+   width: 6px;
+   height: 12px;
+   background: var(--dark-green);
+}
+
+.slider input {
+   -webkit-appearance: none;
+   appearance: none;
+   background: transparent;
+}
+
+.slider input::-webkit-slider-thumb {
+   -webkit-appearance: none;
+   appearance: none;
+   width: 8px;
+   height: 20px;
+   border-radius: 3px;
+   background-color: var(--green);
+   cursor: pointer;
+   box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.3);
+   transform: translateY(-30%);
+}
+
+.slider-value {
+   color: var(--green);
+   font-size: 20px;
+   transform: translateY(5px);
+}
+

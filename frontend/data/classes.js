@@ -5,7 +5,7 @@ export const traceDefectsClassesMap = {
    "Open": "Обрыв",
    "MouseBite": "Мышиный укус",
    "HoleBreakout": "Уход отверстия",
-   "ConductorScratch": "Царапина провподника",
+   "ConductorScratch": "Царапина проводника",
    "ConductorForeignObject": "Сторонний объект на проводнике"
 }
 export const pcbDefectsClassesMap = {

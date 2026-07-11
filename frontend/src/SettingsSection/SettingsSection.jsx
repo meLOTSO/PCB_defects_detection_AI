@@ -11,10 +11,10 @@ export default function SettingsSection({ onImageChange, onDetect, onConfidenceC
 
          <ContentBlock className="setting-content_block filter-block settings-collection">
 
-            <Select className="model-select" onChange={onTraceDefectsChange}>
+            <Select className="trace_defects-select" onChange={onTraceDefectsChange} buttonClass="warning-button trace_defects-warning" alt="Warning: Модель может работать некорректно">
                <select
-                  name="model"
-                  id="model_sel"
+                  name="trace_defects"
+                  id="trace_defects"
                   multiple
                   defaultValue={Object.keys(traceDefectsClassesMap)}>
                   {Object.keys(traceDefectsClassesMap).map(key =>
@@ -22,10 +22,10 @@ export default function SettingsSection({ onImageChange, onDetect, onConfidenceC
                </select>
             </Select>
 
-            <Select className="defects-select" onChange={onPcbDefectsChange}>
+            <Select className="pcb_defects-select" onChange={onPcbDefectsChange}>
                <select
-                  name="defects"
-                  id="defects_sel"
+                  name="pcb_defects"
+                  id="pcb_defects"
                   defaultValue={Object.keys(pcbDefectsClassesMap)}
                   multiple>
                   {Object.keys(pcbDefectsClassesMap).map(key => {

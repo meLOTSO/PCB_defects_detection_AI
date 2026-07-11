@@ -1,6 +1,8 @@
 import './ResultImageSection.css'
 import ContentBlock from '../ContentBlock/ContentBlock';
 import DefectPlace from '../DefectPlace/DefectPlace';
+import Message from '../Message/Message';
+
 import { useEffect, useRef, useState } from 'react';
 import { pcbDefectsClassesMap, traceDefectsClassesMap } from '../../data/classes';
 
@@ -86,13 +88,12 @@ export default function ResultImageSection({ result, images, activeIndex, defect
                      />
                })}
                {detectionIndex !== null && (
-                  <span
-                     className='defect_label'
-                     style={{ left: mousePosition.x, top: mousePosition.y, }}>
+                  <Message
+                     className="defect_label" >
                      {getDefectName(detectionIndex) in traceDefectsClassesMap
                         ? traceDefectsClassesMap[getDefectName(detectionIndex)]
                         : pcbDefectsClassesMap[getDefectName(detectionIndex)]} {getDefectConf(detectionIndex)}
-                  </span>
+                  </Message>
                )}
             </div>
          </ContentBlock>

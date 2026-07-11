@@ -17,15 +17,3 @@
    width: 100%;
    display: inline-block;
 }
-
-.defect_label {
-   position: fixed;
-   display: block;
-   padding: 10px;
-   margin: 6px;
-   background-color: var(--gray);
-   border-radius: 16px;
-   color: var(--dark-green);
-   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.8);
-   z-index: 100;
-}

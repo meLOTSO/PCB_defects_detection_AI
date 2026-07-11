@@ -21,7 +21,7 @@ function buildSelectedArray(options, defaultValue) {
    return options.map(option => selectedValues.has(option.props.value));
 }
 
-export default function Select({ children, className, onChange }) {
+export default function Select({ children, className, onChange, buttonClass, alt }) {
    const [frameDisplay, setFrameDisplay] = useState("none")
    const selectRef = useRef(null);
    let classnames = "select";
@@ -74,7 +74,7 @@ export default function Select({ children, className, onChange }) {
    return (
       <div className={classnames}>
          <div className="unvisible">{children}</div>
-         <Button className="btn-select" onClick={() => setFrameDisplay(true)}>{children.props.name}</Button>
+         <Button alt={alt} className={"btn-select " + (buttonClass ? buttonClass : "")} onClick={() => setFrameDisplay(true)}>{children.props.name}</Button>
          <Frame display={frameDisplay} setDisplay={setFrameDisplay} className="trace_defects-frame">
             <h4>{children.props.name}</h4>
             {options.map((option, index) =>

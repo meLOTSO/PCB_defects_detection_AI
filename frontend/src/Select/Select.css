@@ -9,6 +9,7 @@
    flex-direction: column;
    gap: 10px;
    border-radius: 30px;
+   color: inherit;
 }
 
 .trace_defects-frame h4 {

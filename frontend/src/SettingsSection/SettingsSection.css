@@ -22,16 +22,17 @@
    grid-area: filter;
    grid-template-columns: repeat(2, 1fr);
    grid-template-rows: repeat(2, 1fr);
-   grid-template-areas: "model conf"
-                        "defects conf";
+   grid-template-areas: "trace conf"
+                        "pcb conf";
 }
 
-.model-select {
-   grid-area: model;
+.trace_defects-select {
+   grid-area: trace;
 }
 
-.defects-select {
-   grid-area: defects;
+
+.pcb_defects-select {
+   grid-area: pcb;
 }
 
 .confidence_threshold {

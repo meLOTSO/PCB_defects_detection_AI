@@ -61,14 +61,6 @@
    justify-content: center;
 }
 
-.submit-btn.loading,
-.submit-btn:disabled {
-   background-color: var(--green);
-   color: var(--dark-green);
-   cursor: default;
-   pointer-events: none;
-}
-
 .setting-label-block {
    grid-area: yolo;
 }

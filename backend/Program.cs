@@ -42,8 +42,6 @@ app.MapPost("/detect", async (HttpRequest request, YoloDetectorService service) 
         pcb_defects = pcbDefectsResult
     };
 
-    Console.WriteLine($"COMBINE RESULT: {JsonSerializer.Serialize(combineResult)}");
-
     return Results.Ok(combineResult);
 });
 

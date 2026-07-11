@@ -37,8 +37,6 @@ function App() {
          }
 
          const data = await response.json();
-         console.log("DATA: ", data);
-
          const traceResults = data?.trace_defects?.results || [];
          const pcbResults = data?.pcb_defects?.results || [];
 

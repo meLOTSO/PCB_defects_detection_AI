@@ -27,3 +27,10 @@
    font-size: 12px;
 }
 
+.btn-black.loading,
+.btn-black:disabled {
+   background-color: var(--green);
+   color: var(--dark-green);
+   cursor: default;
+   pointer-events: none;
+}

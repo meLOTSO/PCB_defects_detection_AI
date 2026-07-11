@@ -12,7 +12,8 @@ export default function DefectPlace({ x1, y1, x2, y2, color, index, setDetection
       width: `${width}px`,
       height: `${height}px`,
       backgroundColor: color,
-      pointerEvents: "auto"
+      pointerEvents: "auto",
+      border: "2px solid var(--white)"
    }
    const hoverStyle = {
       left: `${x1}px`,

@@ -20,18 +20,3 @@
    animation: none;
    cursor: crosshair;
 }
-
-/* .defect_place span {
-   position: fixed;
-   display: none;
-}
-
-.defect_place:hover span {
-   display: block;
-   padding: 10px;
-   margin: 6px;
-   background-color: var(--dark);
-   border-radius: 16px;
-   color: var(--gray);
-   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.8);
-} */

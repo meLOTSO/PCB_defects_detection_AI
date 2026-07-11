@@ -35,8 +35,6 @@ public class YoloDetectorService
 
             string arguments = $"\"{_scriptPath}\" \"{modelPath}\" {confidenceStr} \"{imageSize}\" \"{escapedPathsJson}\"";
 
-            Console.WriteLine($"DEBUG: Аргументы: {arguments}");
-
             var startInfo = new ProcessStartInfo
             {
                 FileName = _pythonPath,
@@ -52,7 +50,6 @@ public class YoloDetectorService
 
             using var process = Process.Start(startInfo);
             string output = await process!.StandardOutput.ReadToEndAsync();
-            Console.WriteLine($"OUTPUT: {output}");
             string error = await process.StandardError.ReadToEndAsync();
             await process.WaitForExitAsync();
 

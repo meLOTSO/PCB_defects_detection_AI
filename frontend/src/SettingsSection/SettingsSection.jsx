@@ -48,7 +48,8 @@ export default function SettingsSection({ onImageChange, onDetect, onConfidenceC
             <form action="/detect" method="post" className="setting-form settings-collection" onSubmit={(e) => e.preventDefault()}>
                <Button
                   className="btn-select_images"
-                  onClick={() => document.getElementById("select_images").click()}>
+                  onClick={() => document.getElementById("select_images").click()}
+                  disabled={isLoading}>
                   <input
                      type="file"
                      name="select_images"

@@ -61,6 +61,8 @@ export default function ResultImageSection({ result, images, activeIndex, defect
    console.log("RESULT: ", result);
    console.log("DEFECTS: ", defectNames);
 
+   const colorProvider = new ColorsByClassProvoder();
+
    return (
       <section className="result_images-section">
          <ContentBlock className='result-image'>
@@ -81,7 +83,7 @@ export default function ResultImageSection({ result, images, activeIndex, defect
                         y1={(det.bbox.y1 * scale)}
                         x2={(det.bbox.x2 * scale)}
                         y2={(det.bbox.y2 * scale)}
-                        color={getColorByClass(det.classId)}
+                        color={colorProvider.getColorByClassName(det.className)}
                         index={index}
                         setDetectionIndex={setDetectionIndex}
                         onMouseMove={handlerMouseMove}
@@ -101,23 +103,21 @@ export default function ResultImageSection({ result, images, activeIndex, defect
    );
 }
 
-function getColorByClass(classId) {
-   const colors = [
-      "#ff0000",
-      "#00ff00",
-      "#0000ff",
-      "#ffff00",
-      "#ff00ff",
-      "#00ffff",
-      "#ff8800",
-      "#88ff00",
-      "#0088ff",
-      "#ff4400",
-      "#8800ff",
-      "#ffaa00",
-      "#00ff88",
-      "#ff0066",
-      "#6600ff"
-   ]
-   return colors[classId % colors.length]
+class ColorsByClassProvoder {
+   constructor() {
+      this._index = 0;
+      this.colorClassNamePair = {};
+      this.colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff", "#ff8800", "#88ff00", "#0088ff", "#ff4400", "#8800ff", "#ffaa00", "#00ff88", "#ff0066", "#6600ff"];
+   }
+
+   getColorByClassName = (className) => {
+      if (!this.colorClassNamePair[className]) {
+         const color = this.colors[this._index];
+         this.colorClassNamePair[className] = color;
+         this._index++;
+         return color;
+      } else {
+         return this.colorClassNamePair[className];
+      }
+   }
 }

@@ -72,7 +72,7 @@ def process_batch(model_path, confidence, image_size, image_paths):
    model = YOLO(model_path)
    results = []
    
-   sys.stderr.write(f"[{__name__}]: model.names = {model.names}")
+   sys.stderr.write(f"[process_batch]: model.names = {model.names}")
    sys.stdout.flush()
    
    for path in image_paths:

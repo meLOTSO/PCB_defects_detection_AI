@@ -11,7 +11,7 @@ function App() {
    const [images, setImages] = useState([]);
    const [results, setResults] = useState([]);
    const [activeResultIndex, setActiveResultIndex] = useState(0);
-   const [confidence, setConfidence] = useState(80);
+   const [confidence, setConfidence] = useState(0.1);
    const [loading, setLoading] = useState(false);
 
    const [traceDefects, setTraceDefects] = useState(Object.keys(traceDefectsClassesMap));

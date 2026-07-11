@@ -107,7 +107,7 @@ class ColorsByClassProvoder {
    constructor() {
       this._index = 0;
       this.colorClassNamePair = {};
-      this.colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff", "#ff8800", "#88ff00", "#0088ff", "#ff4400", "#8800ff", "#ffaa00", "#00ff88", "#ff0066", "#6600ff"];
+      this.colors = ["#00ff00", "ff0000", "#0000ff", "#ffff00", "#ff00ff", "#00ffff", "#ff8800", "#88ff00", "#0088ff", "#ff4400", "#8800ff", "#ffaa00", "#00ff88", "#ff0066", "#6600ff"];
    }
 
    getColorByClassName = (className) => {

@@ -11,7 +11,7 @@
 
 .defect_place {
    position: absolute;
-   z-index: 100;
+   z-index: 99;
    animation: defectPulse 0.8s ease-in-out infinite;
    pointer-events: auto;
 }

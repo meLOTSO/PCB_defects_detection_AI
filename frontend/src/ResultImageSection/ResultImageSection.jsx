@@ -4,7 +4,7 @@ import DefectPlace from '../DefectPlace/DefectPlace';
 import { useEffect, useRef, useState } from 'react';
 import { pcbDefectsClassesMap, traceDefectsClassesMap } from '../../data/classes';
 
-export default function ResultImageSection({ result, images, activeIndex }) {
+export default function ResultImageSection({ result, images, activeIndex, defectNames, confidence }) {
    const [scale, setScale] = useState(1);
    const [detectionIndex, setDetectionIndex] = useState(null);
    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -57,6 +57,7 @@ export default function ResultImageSection({ result, images, activeIndex }) {
    }
 
    console.log("RESULT: ", result);
+   console.log("DEFECTS: ", defectNames);
 
    return (
       <section className="result_images-section">
@@ -71,17 +72,18 @@ export default function ResultImageSection({ result, images, activeIndex }) {
                      setTimeout(calculateScale, 50);
                   }} />
                {result.detections?.map((det, index) => {
-                  return <DefectPlace
-                     key={`defect_${result.filename}_${index}_${scale}`}
-                     x1={(det.bbox.x1 * scale)}
-                     y1={(det.bbox.y1 * scale)}
-                     x2={(det.bbox.x2 * scale)}
-                     y2={(det.bbox.y2 * scale)}
-                     color={getColorByClass(det.classId)}
-                     index={index}
-                     setDetectionIndex={setDetectionIndex}
-                     onMouseMove={handlerMouseMove}
-                  />
+                  if (det.confidence >= confidence && defectNames.includes(det.className))
+                     return <DefectPlace
+                        key={`defect_${result.filename}_${index}_${scale}`}
+                        x1={(det.bbox.x1 * scale)}
+                        y1={(det.bbox.y1 * scale)}
+                        x2={(det.bbox.x2 * scale)}
+                        y2={(det.bbox.y2 * scale)}
+                        color={getColorByClass(det.classId)}
+                        index={index}
+                        setDetectionIndex={setDetectionIndex}
+                        onMouseMove={handlerMouseMove}
+                     />
                })}
                {detectionIndex !== null && (
                   <span
@@ -93,7 +95,6 @@ export default function ResultImageSection({ result, images, activeIndex }) {
                   </span>
                )}
             </div>
-            {/* <div className="image-name">{result.filename}</div> */}
          </ContentBlock>
       </section>
    );

@@ -1,8 +1,12 @@
 .selected_image-section {
    display: grid;
+   width: 100%;
    grid-template-columns: repeat(4, 1fr);
-   gap: 30px;
-   row-gap: 0;
+   column-gap: 30px;
+}
+
+.selected_image {
+   color: var(--dark-green);
 }
 
 .selected_image button {

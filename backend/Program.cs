@@ -23,27 +23,17 @@ app.MapPost("/detect", async (HttpRequest request, YoloDetectorService service) 
     if (files is null || files.Count == 0)
         return Results.BadRequest(new { error = "Не загружено ни одного изображения" });
 
-    var confidenceStr = form["confidence_threshold"].FirstOrDefault() ?? "0.8";
+    var confidenceStr = form["confidence_threshold"].FirstOrDefault();
     if (!float.TryParse(confidenceStr, System.Globalization.NumberStyles.Float,
         System.Globalization.CultureInfo.InvariantCulture, out float confidence))
         confidence = 0.8f;
-
-    var traceDefectsNames = form["trace_defects"]
-        .Where(x => x is not null)
-        .Select(x => x!)
-        .ToList();
-
-    var pcbDefectsNames = form["pcb_defects"]
-        .Where(x => x is not null)
-        .Select(x => x!)
-        .ToList();
 
     var modelsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Models");
     var traceDefectsModel = Path.Combine(modelsDirectory, "best_trace_defects.pt");
     var pcbDefectsModel = Path.Combine(modelsDirectory, "best_pcb_defects.pt");
 
-    var traceDefectsResult = await service.DetectDefectsBatch(traceDefectsModel, 226, files, traceDefectsNames, confidence);
-    var pcbDefectsResult = await service.DetectDefectsBatch(pcbDefectsModel, 640, files, pcbDefectsNames, confidence);
+    var traceDefectsResult = await service.DetectDefectsBatch(traceDefectsModel, confidence, 226, files);
+    var pcbDefectsResult = await service.DetectDefectsBatch(pcbDefectsModel, confidence, 640, files);
 
     var combineResult = new
     {

@@ -6,13 +6,13 @@ public class YoloDetectorService
 {
     private readonly string _pythonPath = "python";
     private readonly string _scriptPath = Path.Combine(Directory.GetCurrentDirectory(), "Scripts", "detect_api.py");
+    private readonly JsonSerializerOptions serializerOptions = new() { PropertyNameCaseInsensitive = true };
 
     public async Task<object> DetectDefectsBatch(
         string modelPath,
+        float confidenceThreshold,
         int imageSize,
-        IReadOnlyList<IFormFile> imageFiles,
-        List<string> classNames,
-        float confidenceThreshold)
+        IReadOnlyList<IFormFile> imageFiles)
     {
         var tempPaths = new List<string>();
         var filenames = new List<string>();
@@ -30,13 +30,10 @@ public class YoloDetectorService
         try
         {
             string pathsJson = JsonSerializer.Serialize(tempPaths);
-            string classesJson = JsonSerializer.Serialize(classNames);
             string confidenceStr = confidenceThreshold.ToString(System.Globalization.CultureInfo.InvariantCulture);
-
             string escapedPathsJson = pathsJson.Replace("\"", "\\\"");
-            string escapedClassesJson = classesJson.Replace("\"", "\\\"");
 
-            string arguments = $"\"{_scriptPath}\" \"{modelPath}\" \"{imageSize}\" \"{escapedPathsJson}\" \"{escapedClassesJson}\" {confidenceStr}";
+            string arguments = $"\"{_scriptPath}\" \"{modelPath}\" {confidenceStr} \"{imageSize}\" \"{escapedPathsJson}\"";
 
             Console.WriteLine($"DEBUG: Аргументы: {arguments}");
 
@@ -60,17 +57,12 @@ public class YoloDetectorService
             await process.WaitForExitAsync();
 
             if (!string.IsNullOrEmpty(error))
-            {
                 Console.WriteLine($"Python stderr: {error}");
-            }
 
             if (process.ExitCode != 0)
-            {
                 throw new Exception($"Ошибка в Python (код {process.ExitCode}): {error}");
-            }
 
-            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var result = JsonSerializer.Deserialize<BatchDetectionResponse>(output, options);
+            var result = JsonSerializer.Deserialize<BatchDetectionResponse>(output, serializerOptions);
 
             if (result is null)
                 return new { error = "Пустой ответ от Python" };

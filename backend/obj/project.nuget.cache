@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ltvqABPq45M=",
+  "dgSpecHash": "afv/uuXP5UE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\MOLL\\Desktop\\Test\\backend\\backend.csproj",
+  "projectFilePath": "C:\\Users\\MOLL\\Desktop\\PCB_DEFECT_DETECTION\\backend\\backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MOLL\\.nuget\\packages\\clipper2\\2.0.0\\clipper2.2.0.0.nupkg.sha512",
     "C:\\Users\\MOLL\\.nuget\\packages\\microsoft.ml.onnxruntime\\1.23.2\\microsoft.ml.onnxruntime.1.23.2.nupkg.sha512",

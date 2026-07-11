@@ -6,7 +6,7 @@ warnings.filterwarnings("ignore")
 
 original_stdout = sys.stdout
 
-def process_single_image(image_path, model, selected_names, confidence_threshold, image_size):
+def process_single_image(model, confidence, image_size, image_path):
    import cv2
    
    image = cv2.imread(image_path)
@@ -17,18 +17,9 @@ def process_single_image(image_path, model, selected_names, confidence_threshold
          "filename": os.path.basename(image_path)
       }
    
-   if not selected_names:
-      return {
-         "success": True,
-         "filename": os.path.basename(image_path),
-         "width": image.shape[1],
-         "height": image.shape[0],
-         "detections": []
-      }
-   
    results = model.predict(
       source=image_path,
-      conf=confidence_threshold,
+      conf=confidence,
       iou=0.45,
       imgsz=image_size,
       verbose=False
@@ -43,15 +34,14 @@ def process_single_image(image_path, model, selected_names, confidence_threshold
             confidence = float(box.conf[0])
             class_id = int(box.cls[0])
             class_name = model.names[class_id]
-            if class_name in selected_names:
-               detections.append({
-                  "classId": class_id,
-                  "className": class_name,
-                  "confidence": confidence,
-                  "bbox": [x1, y1, x2, y2]
-               })
+            detections.append({
+               "classId": class_id,
+               "className": class_name,
+               "confidence": confidence,
+               "bbox": [x1, y1, x2, y2]
+            })
    
-   sys.stderr.write(f"Found {len(detections)} detections for {image_path}\n")
+   sys.stderr.write(f"[{__name__}]: Найдено {len(detections)} детекций в {image_path}\n")
    sys.stderr.flush()
    
    return {
@@ -75,19 +65,18 @@ def process_single_image(image_path, model, selected_names, confidence_threshold
       ]
    }
 
-def process_batch(image_paths, model_path, selected_names, confidence_threshold, image_size):
+def process_batch(model_path, confidence, image_size, image_paths):
    sys.stdout = sys.stderr
    
    from ultralytics import YOLO
    model = YOLO(model_path)
    results = []
    
-   sys.stderr.write(f"model.names: {model.names}")
-   sys.stderr.write(f"selected names: {selected_names}")
+   sys.stderr.write(f"[{__name__}]: model.names = {model.names}")
    sys.stdout.flush()
    
    for path in image_paths:
-      result = process_single_image(path, model, selected_names, confidence_threshold, image_size)
+      result = process_single_image(model, confidence, image_size, path)
       results.append(result)
    
    sys.stdout = original_stdout
@@ -99,16 +88,15 @@ def process_batch(image_paths, model_path, selected_names, confidence_threshold,
    }, ensure_ascii=False)
 
 if __name__ == "__main__":
-   if len(sys.argv) < 6:
+   if len(sys.argv) < 5:
       sys.stdout = original_stdout
       print(json.dumps({"error": "Недостаточно аргументов"}))
       sys.exit(1)
    
    model_path = sys.argv[1]
-   image_size = int(sys.argv[2])
-   image_paths = json.loads(sys.argv[3])
-   selected_names = json.loads(sys.argv[4])
-   confidence_threshold = float(sys.argv[5])
+   confidence = float(sys.argv[2])
+   image_size = int(sys.argv[3])
+   image_paths = json.loads(sys.argv[4])
    
-   result = process_batch(image_paths, model_path, selected_names, confidence_threshold, image_size)
+   result = process_batch(model_path, confidence, image_size, image_paths)
    print(result)

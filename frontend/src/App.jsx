@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Header from './Header/Header'
 import ContentBlock from './ContentBlock/ContentBlock'
-import Setting from './Setting/Setting'
+import SettingsSection from './SettingsSection/SettingsSection'
 import SelectedImagesSection from './SelectedImagesSection/SelectedImagesSection'
 import ResultImageSection from './ResultImageSection/ResultImageSection'
 import { traceDefectsClassesMap, pcbDefectsClassesMap } from '../data/classes'
@@ -12,20 +12,17 @@ function App() {
    const [results, setResults] = useState([]);
    const [activeResultIndex, setActiveResultIndex] = useState(0);
    const [confidence, setConfidence] = useState(80);
+   const [loading, setLoading] = useState(false);
+
    const [traceDefects, setTraceDefects] = useState(Object.keys(traceDefectsClassesMap));
    const [pcbDefects, setPcbDefects] = useState(Object.keys(pcbDefectsClassesMap));
-   const [loading, setLoading] = useState(false);
 
    async function handleDetect() {
       if (images.length === 0) return;
 
       const formData = new FormData();
       images.forEach(file => formData.append("images", file));
-      formData.append("confidence_threshold", confidence.toString());
-      // Object.keys(traceDefectsClassesMap).forEach(defect => formData.append("trace_defects", defect));
-      // Object.keys(pcbDefectsClassesMap).forEach(defect => formData.append("pcb_defects", defect));
-      traceDefects.forEach(defect => formData.append("trace_defects", defect));
-      pcbDefects.forEach(defect => formData.append("pcb_defects", defect));
+      formData.append("confidence_threshold", 0.1);
 
       setLoading(true);
       try {
@@ -82,23 +79,27 @@ function App() {
    return (
       <>
          <Header />
-         <ContentBlock>
-            <Setting
-               onImageChange={handleImageSelect}
-               onDetect={handleDetect}
-               onConfidenceChange={setConfidence}
-               onTraceDefectsChange={setTraceDefects}
-               onPcbDefectsChange={setPcbDefects}
-               isLoading={loading}
-               traceDefectsClassesMap={traceDefectsClassesMap}
-               pcbDefectsClassesMap={pcbDefectsClassesMap} />
-         </ContentBlock>
+         <SettingsSection
+            onImageChange={handleImageSelect}
+            onDetect={handleDetect}
+            onConfidenceChange={setConfidence}
+            onTraceDefectsChange={setTraceDefects}
+            onPcbDefectsChange={setPcbDefects}
+            isLoading={loading}
+            traceDefectsClassesMap={traceDefectsClassesMap}
+            pcbDefectsClassesMap={pcbDefectsClassesMap} />
          {images.length > 0 && <SelectedImagesSection
             images={images}
             activeIndex={activeResultIndex}
             hasResults={results.length !== 0}
             onImageClick={setActiveResultIndex} />}
-         {activeResult && (<ResultImageSection result={activeResult} images={images} activeIndex={activeResultIndex} />)}
+         {activeResult && (
+            <ResultImageSection
+               result={activeResult}
+               images={images}
+               activeIndex={activeResultIndex}
+               defectNames={traceDefects.concat(pcbDefects)}
+               confidence={confidence} />)}
       </>
    )
 }

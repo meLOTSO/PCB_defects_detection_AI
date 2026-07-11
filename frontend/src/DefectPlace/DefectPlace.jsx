@@ -20,7 +20,7 @@ export default function DefectPlace({ x1, y1, x2, y2, color, index, setDetection
       width: `${width}px`,
       height: `${height}px`,
       backgroundColor: "transparent",
-      border: `4px solid ${color}`,
+      border: `2px solid ${color}`,
       pointerEvents: "auto"
    }
 
@@ -40,7 +40,6 @@ export default function DefectPlace({ x1, y1, x2, y2, color, index, setDetection
             onMouseMove(e);
             setDetectionIndex(index);
          }}>
-         {/* <span className='defect_label' style={{ left: mouseX, top: mouseY }}>{traceDefectsClassesMap[defect_name]} {confidence}</span> */}
       </div>
    )
 }

@@ -8,5 +8,10 @@
 
 .noselected {
    background-color: var(--gray);
-   color: var(--dark);
+   color: var(--dark-green);
+}
+
+.selected {
+   background-color: var(--dark-green);
+   color: var(--gray);
 }

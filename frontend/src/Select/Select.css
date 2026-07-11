@@ -10,3 +10,7 @@
    gap: 10px;
    border-radius: 30px;
 }
+
+.trace_defects-frame h4 {
+   color: var(--dark-green);
+}

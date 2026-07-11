@@ -1,0 +1,77 @@
+@import url("../params.css");
+
+.setting-section {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   grid-template-areas: "filter filter yolo form";
+   column-gap: 30px;
+}
+
+.setting-content_block {
+   background-color: var(--dark-green);
+   color: var(--green);
+}
+
+.settings-collection {
+   display: grid;
+   row-gap: 20px;
+   column-gap: 60px;
+}
+
+.filter-block {
+   grid-area: filter;
+   grid-template-columns: repeat(2, 1fr);
+   grid-template-rows: repeat(2, 1fr);
+   grid-template-areas: "model conf"
+                        "defects conf";
+}
+
+.model-select {
+   grid-area: model;
+}
+
+.defects-select {
+   grid-area: defects;
+}
+
+.confidence_threshold {
+   grid-area: conf;
+}
+.confidence_threshold div {
+   font-size: 16px;
+}
+
+.btn-select_images > input, 
+.btn-select_cad_file > input,
+.submit-btn > input {
+   display: none;
+}
+
+
+.yolo {
+   background-color: var(--green);
+   color: var(--dark-green);
+   font-size: 28px;
+   width: 100%;
+   height: 100%;
+   border-radius: 40px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.submit-btn.loading,
+.submit-btn:disabled {
+   background-color: var(--green);
+   color: var(--dark-green);
+   cursor: default;
+   pointer-events: none;
+}
+
+.setting-label-block {
+   grid-area: yolo;
+}
+
+.form-block {
+   grid-area: form;
+}
